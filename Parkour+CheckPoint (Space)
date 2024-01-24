@@ -16,10 +16,6 @@ eventPlayerWon = function(name, timeElapsed)
 	end
 end
 
-for name in pairs(tfm.get.room.playerList) do
-	system.bindMouse(name, true)
-end
-
 local xcp = {}
 local ycp = {}
 local cp = {}
@@ -48,8 +44,4 @@ eventPlayerDied = function(name)
 	if cp[name] == true then
 		tfm.exec.movePlayer(name, xcp[name], ycp[name])
 	end
-end
-
-eventMouse = function(name, x, y)
-	tfm.exec.movePlayer(name, x, y)
 end
