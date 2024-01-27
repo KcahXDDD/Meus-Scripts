@@ -1,4 +1,4 @@
-SuperAdmin = "Coldzinhu#8051"
+SuperAdmin = "Kcah#2745"
 
 tfm.exec.disableAfkDeath(true)
 tfm.exec.disableAutoShaman(true)
