@@ -1,4 +1,6 @@
-SuperAdmin = "Kcah#2745"
+SuperAdmin = nil
+log = ""
+tcp = "off"
 
 tfm.exec.disableAfkDeath(true)
 tfm.exec.disableAutoShaman(true)
@@ -159,8 +161,10 @@ eventPopupAnswer = function(id, name, answer)
 			popupid = popupid + 1
 		end
 	elseif id == 5 then
-		ui.addTextArea(6, "<p align='center'><ROSE>~[Moderaração] "..answer, nil, 0, 340, 800, 60, 0xD870B84, 0x590068, 0.75, true)
-		admin = 10
+		if answer ~= "" then
+			ui.addTextArea(6, "<p align='center'><ROSE>~[Moderaração] "..answer, nil, 0, 340, 800, 60, 0xD870B84, 0x590068, 0.75, true)
+			admin = 10
+		end
 	elseif id == 6 then
 		id, x, y = answer:match("([^#]+)#([^#]+)#([^#]+)")
 		x = tonumber(x)
@@ -183,5 +187,19 @@ eventLoop = function()
 	elseif loop == 2 then
 		print("<font size='1000'> <font size='50'><font color='#A4CF9E'><p align='center'>Tribe Manager<br><font color='#C53DFF'><font size='12'>(Made by Kcah#2475)<p align='left'>")
 		loop = 3
+	end
+end
+
+eventChatCommand = function(name, cmd)
+	if cmd:sub(1,3) == "tcp" and tcp == "off" then
+		ui.addTextArea(1001, "", nil, -400, 50, 420, 250, 0xF, 0x035000, 0.9, true)
+		ui.addTextArea(1002, "<font color='#FFFFFF'><p align='left'><font size='20'>TCP - <font size='15'>Transformice Command Prompt", nil, -399, 50, 418, 27, 0x0, 0x035000, 1, true)
+		ui.addTextArea(1003, "<b><font size='11'><font color='#47884E'>"..log, nil, -398, 86, 415, 225, 0xF, 0xF, 0, true)
+		tcp = "on"
+	elseif cmd:sub(1,3) == "tcp" and tcp == "on" then
+		for i = 1000,1003 do
+			ui.removeTextArea(i)
+		end
+		tcp = "off"
 	end
 end
